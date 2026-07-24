@@ -1,0 +1,21 @@
+<?php
+
+$user = $_POST['user'] ?? '';
+$pass = $_POST['pass'] ?? '';
+
+// Store temporarily in cookies to test auth against Kea
+setcookie('kea_user', $user, time() + 86400, '/');
+setcookie('kea_pass', $pass, time() + 86400, '/');
+$_COOKIE['kea_user'] = $user;
+$_COOKIE['kea_pass'] = $pass;
+
+// Test credentials with list-commands
+$res = send_kea_command('list-commands', ['dhcp4']);
+if ($res['result'] !== 0) {
+
+    // Bad login -> clear cookies
+    setcookie('kea_user', '', time() - 3600, '/');
+    setcookie('kea_pass', '', time() - 3600, '/');
+    unset($_COOKIE['kea_user'], $_COOKIE['kea_pass']);
+    $login_error = "Authentication failed: " . ($res['text'] ?? 'Unknown error');
+}
