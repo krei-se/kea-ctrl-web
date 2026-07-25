@@ -12,11 +12,13 @@ if (
 
 ) {
 
+    $ip_addresses = $_POST['ip-addresses'] ?? [];
+
     $host6_save_res = send_kea_command('reservation-update', ['dhcp6'], [
         'reservation' => [
             'subnet-id' => (int)$_POST['original-subnet-id'],
             'duid' => $_POST['original-duid'],
-            'ip-addresses' => $_POST['ip-addresses'],
+            'ip-addresses' => $ip_addresses,
             'hostname' => $_POST['hostname'],
 
         ]

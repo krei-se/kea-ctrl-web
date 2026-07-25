@@ -111,7 +111,7 @@ if (
                 newRow.innerHTML = `
                     <th>IPv6 Address</th>
                     <td>
-                        <input type="text" name="ip-addresses[]" placeholder="<?= $_POST['subnet-placeholder']  ?>" />
+                        <input type="text" name="ip-addresses[]" value="<?= substr($_POST['subnet-placeholder'], 0, strpos($_POST['subnet-placeholder'], '/'))  ?>" placeholder="<?= $_POST['subnet-placeholder']  ?>" />
                         <button type="button" onclick="this.closest('tr').remove()">Remove</button>
                     </td>
                 `;

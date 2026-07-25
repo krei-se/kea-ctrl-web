@@ -8,10 +8,6 @@
 
         $hosts6 = $hosts6_res['arguments']['hosts'] ?? [];
 
-        foreach ($hosts6_res['arguments']['hosts'] as $host_index => $host6) {
-
-            $hosts6[$host_index] = $host6;
-        }
 
     ?>
         <h4>Subnet ID <?= $subnet6['id'] ?></h4>

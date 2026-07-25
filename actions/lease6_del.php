@@ -5,7 +5,7 @@ if (
 
 ) {
 
-    $lease6_del_res = send_kea_command('lease6-del', ['dhcp4'], [
+    $lease6_del_res = send_kea_command('lease6-del', ['dhcp6'], [
         'ip-address' => $_POST['ip-address'],
 
     ]);

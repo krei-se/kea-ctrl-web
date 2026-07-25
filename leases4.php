@@ -9,11 +9,6 @@ foreach ($subnets4 as $subnet4) {
     $leases4 = $leases4_res['arguments']['leases'] ?? [];
 
 
-    foreach ($leases4_res['arguments']['leases'] as $lease4_index => $lease4) {
-
-        $leases4[$lease4_index] = $lease4;
-    }
-
 ?>
 
     <h4>Subnet ID <?= $subnet4['id'] ?></h4>

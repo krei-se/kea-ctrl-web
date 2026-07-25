@@ -8,10 +8,6 @@ foreach ($subnets4 as $subnet4) {
 
     $hosts4 = $hosts4_res['arguments']['hosts'] ?? [];
 
-    foreach ($hosts4_res['arguments']['hosts'] as $host_index => $host4) {
-
-        $hosts4[$host_index] = $host4;
-    }
 
 ?>
 
