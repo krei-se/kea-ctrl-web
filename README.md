@@ -1,14 +1,14 @@
 # Kea Control Web
 
-Because not everyone likes the Stork here's a super simple PHP webapp to control your Kea DHCP Server.
+Because not everyone likes the Stork here's a PHP webapp to control your Kea DHCP Server.
 
-Theres minimal styling, minimal JS for adding rows, no magic.
+Theres minimal styling, minimal JS for adding rows, no magic and uses only the kea-ctrl-agent interface, so what backend you use won't matter.
 
-If you don't like sth about it you can just take a look at 100 lines of php code in index.php and customize it.
+I wrote it to work with Kea 3.0 which i recommend because the hooks are all available again.
 
-I wrote it with Kea 3.0. I got the stylesheet and the sort-function from Gemini, rest is done by hand and dblchecked with Gemini.
+AI: I got the stylesheet and the sort-function from Gemini, rest is done by hand and dblchecked with Gemini. CSRF and XSS is new to me, recommended by Kimi
 
-You need to login with your credentials from the kea-ctrl-agent which will not be stored but in a $_SESSION value.
+You need to login with your credentials from the kea-ctrl-agent which will not be stored but in a $_SESSION value for 1 hour.
 
 You can change the KEA_URL in `settings.php`:
 
@@ -17,6 +17,9 @@ define('KEA_URL', 'http://127.0.0.1:8000/');
 ```
 
 no mTLS Support yet, should be easily doable though, feel free to just take it as a blueprint or PR.
+
+
+If you don't like sth about it you can just take a look at 100 lines of php code in index.php and customize it.
 
 Enjoy!
 
