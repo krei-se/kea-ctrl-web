@@ -6,7 +6,7 @@ foreach ($subnets6 as $subnet6) {
 
     $leases6_res = send_kea_command('lease6-get-all', ['dhcp6'], ['subnets' => [$subnet6['id']]]);
 
-    $leases6 = $leases6_res['arguments']['leases'] ?? [];
+    $leases6 = sort_kea_items($leases6_res['arguments']['leases'] ?? []);
 
 
 
@@ -18,7 +18,7 @@ foreach ($subnets6 as $subnet6) {
             <th>DUID</th>
             <th>IP-Address</th>
             <th>Hostname</th>
-            <th>Action</th>
+            <th colspan=2>Actions</th>
 
         </tr>
 

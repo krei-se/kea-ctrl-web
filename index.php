@@ -31,6 +31,13 @@ switch ($post_action) {
         include 'actions/logout.php';
         break;
 
+    // Settings
+
+    case 'settings_change_sortorder':
+        include 'actions/settings_change_sortorder.php';
+        break;
+
+
     // Reservations v4
     case 'host4_save':
         include 'actions/host4_save.php';
@@ -98,8 +105,15 @@ if (!$is_logged_in) {
             <button type="submit">Logout</button>
         </form>
 
+        <br><br>
 
         <h1><a href="/">Kea Control Web</a></h1>
+
+
+
+        <?php include 'settings_sortorder.php'; ?>
+
+        <br><br>
 
         <?php include 'subnets4.php'; ?>
         <?php include 'subnets6.php'; ?>

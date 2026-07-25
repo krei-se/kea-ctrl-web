@@ -6,7 +6,7 @@
 
         $hosts6_res = send_kea_command('reservation-get-all', ['dhcp6'], ['subnet-id' => $subnet6['id']]);
 
-        $hosts6 = $hosts6_res['arguments']['hosts'] ?? [];
+        $hosts6 = sort_kea_items($hosts6_res['arguments']['hosts'] ?? []);
 
 
     ?>
@@ -18,6 +18,8 @@
                 <th>IP-Addresses</th>
                 <th>Hostname</th>
                 <th>Option-Data @TODO</th>
+                <th>Action</th>
+
 
             </tr>
 

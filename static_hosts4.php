@@ -6,7 +6,7 @@ foreach ($subnets4 as $subnet4) {
 
     $hosts4_res = send_kea_command('reservation-get-all', ['dhcp4'], ['subnet-id' => $subnet4['id']]);
 
-    $hosts4 = $hosts4_res['arguments']['hosts'] ?? [];
+    $hosts4 = sort_kea_items($hosts4_res['arguments']['hosts'] ?? []);
 
 
 ?>

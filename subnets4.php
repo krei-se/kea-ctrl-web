@@ -13,6 +13,9 @@ if (!empty($config_res['arguments']['Dhcp4']['subnet4'])) {
 }
 
 ?>
+
+<h2>Subnets V4</h2>
+
 <table>
 
     <tr>
