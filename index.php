@@ -2,6 +2,10 @@
 // index.php
 session_start();
 
+// dont do that when talking with the API
+// $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+// $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_SPECIAL_CHARS);
+
 ini_set('display_errors', true); // can stay on as i mak nmo errors
 
 include 'base.php'; // format helpers pr() and pre()
@@ -26,9 +30,58 @@ switch ($post_action) {
     case 'logout':
         include 'actions/logout.php';
         break;
+
+    // Reservations v4
+    case 'host4_save':
+        include 'actions/host4_save.php';
+        break;
+    case 'host4_add':
+        include 'actions/host4_add.php';
+        break;
+    case 'host4_del':
+        include 'actions/host4_del.php';
+        break;
+
+    // Reservations v6
+    case 'host6_save':
+        include 'actions/host6_save.php';
+        break;
+    case 'host6_add':
+        include 'actions/host6_add.php';
+        break;
+    case 'host6_del':
+        include 'actions/host6_del.php';
+        break;
+
+    // Leases v4
+
+    case 'lease4_del':
+        include 'actions/lease4_del.php';
+        break;
+
+    // Leases v6
+
+    case 'lease6_del':
+        include 'actions/lease6_del.php';
+        break;
 }
 
-$is_logged_in = !empty($_COOKIE['kea_user']) && !empty($_COOKIE['kea_pass']);
+
+$get_page = $_GET['page'] ?? '';
+
+switch ($get_page) {
+
+    case 'static_host4_edit':
+        include 'pages/static_host4_edit.php';
+        break;
+    case 'static_host6_edit':
+        include 'pages/static_host6_edit.php';
+        break;
+}
+
+
+
+$is_logged_in = !empty($_COOKIE['kea_user']) && !empty($_SESSION['kea_pass']);
 
 if (!$is_logged_in) {
 
@@ -46,7 +99,7 @@ if (!$is_logged_in) {
         </form>
 
 
-        <h1>Kea Control Web</h1>
+        <h1><a href="/">Kea Control Web</a></h1>
 
         <?php include 'subnets4.php'; ?>
         <?php include 'subnets6.php'; ?>
@@ -58,7 +111,8 @@ if (!$is_logged_in) {
         <?php include 'leases6.php'; ?>
 
 
-        <?php include 'debugcommands.php'; ?>
+        <?php // include 'debugcommands.php'; 
+        ?>
 
 
 

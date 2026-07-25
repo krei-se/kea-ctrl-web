@@ -12,9 +12,13 @@ You need to login with your credentials from
 
 `kea-ctrl-agent.conf`
 
-which will not be stored but in a cookie.
+which will not be stored but in a $_SESSION value.
 
 Enjoy!
+
+API: https://kea.readthedocs.io/en/stable/api.html
+
+
 
 ```
 

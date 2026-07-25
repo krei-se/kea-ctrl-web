@@ -3,7 +3,7 @@
 function send_kea_command(string $command, array $services, array $arguments = [])
 {
     $user = $_COOKIE['kea_user'] ?? '';
-    $pass = $_COOKIE['kea_pass'] ?? '';
+    $pass = $_SESSION['kea_pass'] ?? '';
 
     $payload = json_encode([
         'command' => $command,

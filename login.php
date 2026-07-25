@@ -7,7 +7,7 @@
 
 <form action="index.php" method="POST">
     <input type="hidden" name="action" value="login">
-    <table="0" cellpadding="5">
+    <table border="0" cellpadding="5">
         <tr>
             <td><label for="user">Username:</label></td>
             <td><input type="text" id="user" name="user" required autofocus></td>
@@ -20,5 +20,5 @@
             <td></td>
             <td><button type="submit">Login</button></td>
         </tr>
-        </table>
+    </table>
 </form>
