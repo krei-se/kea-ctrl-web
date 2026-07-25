@@ -6,7 +6,7 @@ Theres minimal styling, minimal JS for adding rows, no magic.
 
 If you don't like sth about it you can just take a look at 100 lines of php code in index.php and customize it.
 
-I wrote it with Kea 3.0.
+I wrote it with Kea 3.0. I got the stylesheet and the sort-function from Gemini, Rest is done by hand and dblchecked with Gemini.
 
 You need to login with your credentials from the kea-ctrl-agent which will not be stored but in a $_SESSION value.
 
