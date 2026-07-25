@@ -65,7 +65,7 @@ if (
                         <tr>
                             <th>IPv6 Address</th>
                             <td>
-                                <input type="text" name="ip-addresses[]" value="<?= hsc($ip_address) ?>" />
+                                <input type="text" name="ip-addresses[]" value="<?= hsc($ip_address) ?>" size="30" />
                                 <button type="button" onclick="this.closest('tr').remove()">Remove</button>
                             </td>
                         </tr>
@@ -111,7 +111,7 @@ if (
                 newRow.innerHTML = `
                     <th>IPv6 Address</th>
                     <td>
-                        <input type="text" name="ip-addresses[]" value="<?= hsc(substr($_POST['subnet-placeholder'], 0, strpos($_POST['subnet-placeholder'], '/')))  ?>" placeholder="<?= hsc($_POST['subnet-placeholder'])  ?>" />
+                        <input type="text" size="30" name="ip-addresses[]" value="<?= hsc(substr($_POST['subnet-placeholder'], 0, strpos($_POST['subnet-placeholder'], '/')))  ?>" placeholder="<?= hsc($_POST['subnet-placeholder'])  ?>" />
                         <button type="button" onclick="this.closest('tr').remove()">Remove</button>
                     </td>
                 `;

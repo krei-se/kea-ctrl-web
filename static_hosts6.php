@@ -16,6 +16,8 @@ foreach ($subnets6 as $subnet6) {
 
         <input type="hidden" name="dont-query" value="1" />
         <input type="hidden" name="subnet-id" value="<?= hsc($subnet6['id']) ?>" />
+        <input type="hidden" name="subnet-placeholder" value="<?= hsc($subnet6['subnet']) ?>" />
+
         <button type="submit">New</button>
 
     </form>
