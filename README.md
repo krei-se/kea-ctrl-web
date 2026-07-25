@@ -1,6 +1,6 @@
 # Kea Control Web
 
-Because not everyone like the Stork here's a super simple PHP webapp to control your Kea DHCP Server.
+Because not everyone likes the Stork here's a super simple PHP webapp to control your Kea DHCP Server.
 
 Theres minimal styling, minimal JS for adding rows, no magic.
 
