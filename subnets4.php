@@ -28,9 +28,9 @@ if (!empty($config_res['arguments']['Dhcp4']['subnet4'])) {
     ?>
 
         <tr>
-            <td><?= $subnet4['id'] ?></td>
-            <td><?= $subnet4['subnet'] ?></td>
-            <td><?= implode('<br>', array_column($subnet4['pools'], 'pool')) ?></td>
+            <td><?= hsc($subnet4['id']) ?></td>
+            <td><?= hsc($subnet4['subnet']) ?></td>
+            <td><?= implode('<br>', array_map('hsc', array_column($subnet4['pools'], 'pool'))) ?></td>
         </tr>
     <?php
     }

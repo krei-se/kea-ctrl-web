@@ -12,7 +12,7 @@ foreach ($subnets6 as $subnet6) {
 
 ?>
 
-    <h4>Subnet ID <?= $subnet6['id'] ?></h4>
+    <h4>Subnet ID <?= hsc($subnet6['id']) ?></h4>
     <table>
         <tr>
             <th>DUID</th>
@@ -29,29 +29,31 @@ foreach ($subnets6 as $subnet6) {
         ?>
 
             <tr>
-                <td><?= $lease6['duid'] ?></td>
-                <td><?= $lease6['ip-address'] ?></td>
-                <td><?= $lease6['hostname'] ?></td>
+                <td><?= hsc($lease6['duid']) ?></td>
+                <td><?= hsc($lease6['ip-address']) ?></td>
+                <td><?= hsc($lease6['hostname']) ?></td>
                 <td>
                     <form action="index.php?page=static_host6_edit" method="POST">
+                        <?= csrf_hidden() ?>
 
-                        <input type="hidden" name="from-lease" value="1" />
+                        <input type="hidden" name="dont-query" value="1" />
 
-                        <input type="hidden" name="subnet-id" value="<?= $subnet6['id'] ?>" />
+                        <input type="hidden" name="subnet-id" value="<?= hsc($subnet6['id']) ?>" />
                         <input type="hidden" name="identifier-type" value="duid" />
-                        <input type="hidden" name="duid" value="<?= $lease6['duid'] ?>" />
-                        <input type="hidden" name="ip-address" value="<?= $lease6['ip-address'] ?>" />
-                        <input type="hidden" name="hostname" value="<?= $lease6['hostname'] ?>" />
+                        <input type="hidden" name="duid" value="<?= hsc($lease6['duid']) ?>" />
+                        <input type="hidden" name="ip-address" value="<?= hsc($lease6['ip-address']) ?>" />
+                        <input type="hidden" name="hostname" value="<?= hsc($lease6['hostname']) ?>" />
 
-                        <input type="hidden" name="subnet-placeholder" value="<?= $subnet6['subnet'] ?>" />
+                        <input type="hidden" name="subnet-placeholder" value="<?= hsc($subnet6['subnet']) ?>" />
 
                         <button type="submit">Edit as static</button>
                     </form>
                 </td>
                 <td>
                     <form action="index.php" method="POST">
+                        <?= csrf_hidden() ?>
 
-                        <input type="hidden" name="ip-address" value="<?= $lease6['ip-address'] ?>" />
+                        <input type="hidden" name="ip-address" value="<?= hsc($lease6['ip-address']) ?>" />
                         <button type="submit" name="action" value="lease6_del" onclick="return confirm('Really delete this lease?');">Delete</button>
 
                     </form>

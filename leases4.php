@@ -13,7 +13,7 @@ foreach ($subnets4 as $subnet4) {
 
 ?>
 
-    <h4>Subnet ID <?= $subnet4['id'] ?></h4>
+    <h4>Subnet ID <?= hsc($subnet4['id']) ?></h4>
     <table>
         <tr>
             <th>HW-Address</th>
@@ -30,26 +30,28 @@ foreach ($subnets4 as $subnet4) {
         ?>
 
             <tr>
-                <td><?= $lease4['hw-address'] ?></td>
-                <td><?= $lease4['ip-address'] ?></td>
-                <td><?= $lease4['hostname'] ?></td>
+                <td><?= hsc($lease4['hw-address']) ?></td>
+                <td><?= hsc($lease4['ip-address']) ?></td>
+                <td><?= hsc($lease4['hostname']) ?></td>
                 <td>
                     <form action="index.php?page=static_host4_edit" method="POST">
+                        <?= csrf_hidden() ?>
 
-                        <input type="hidden" name="from-lease" value="1" />
+                        <input type="hidden" name="dont-query" value="1" />
 
-                        <input type="hidden" name="subnet-id" value="<?= $subnet4['id'] ?>" />
+                        <input type="hidden" name="subnet-id" value="<?= hsc($subnet4['id']) ?>" />
                         <input type="hidden" name="identifier-type" value="hw-address" />
-                        <input type="hidden" name="hw-address" value="<?= $lease4['hw-address'] ?>" />
-                        <input type="hidden" name="ip-address" value="<?= $lease4['ip-address'] ?>" />
-                        <input type="hidden" name="hostname" value="<?= $lease4['hostname'] ?>" />
+                        <input type="hidden" name="hw-address" value="<?= hsc($lease4['hw-address']) ?>" />
+                        <input type="hidden" name="ip-address" value="<?= hsc($lease4['ip-address']) ?>" />
+                        <input type="hidden" name="hostname" value="<?= hsc($lease4['hostname']) ?>" />
                         <button type="submit">Edit as static</button>
                     </form>
                 </td>
                 <td>
                     <form action="index.php" method="POST">
+                        <?= csrf_hidden() ?>
 
-                        <input type="hidden" name="ip-address" value="<?= $lease4['ip-address'] ?>" />
+                        <input type="hidden" name="ip-address" value="<?= hsc($lease4['ip-address']) ?>" />
                         <button type="submit" name="action" value="lease4_del" onclick="return confirm('Really delete this lease?');">Delete</button>
 
                     </form>

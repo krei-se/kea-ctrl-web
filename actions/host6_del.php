@@ -1,5 +1,7 @@
 <?php
 
+csrf_check();
+
 if (
     isset($_POST['subnet-id']) &&
     isset($_POST['duid']) &&

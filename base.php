@@ -1,5 +1,23 @@
 <?php
 
+function hsc(string $string)
+{
+    return htmlspecialchars($string, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+}
+
+function csrf_hidden()
+{
+    return '<input type="hidden" name="csrf_token" value="' . hsc($_SESSION['csrf_token']) . '">' . "\n";
+}
+
+function csrf_check()
+{
+    if (($_POST['csrf_token'] ?? '') !== ($_SESSION['csrf_token'] ?? '')) {
+        http_response_code(403);
+        exit('Invalid CSRF token');
+    }
+}
+
 function pr(...$vars)
 {
     $output = '';

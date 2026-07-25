@@ -1,5 +1,6 @@
 <?php
 
+csrf_check();
 
 setcookie('kea_user', '', time() - 3600, '/');
 unset($_COOKIE['kea_user'], $_SESSION['kea_pass']);

@@ -5,6 +5,7 @@ $settings_sortorder = $_COOKIE['sortorder'] ?? 'ip-address';
 ?>
 
 <form action="index.php" method="POST">
+    <?= csrf_hidden() ?>
 
     <tr>
         <td>Sort Order:</td>

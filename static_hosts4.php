@@ -11,7 +11,16 @@ foreach ($subnets4 as $subnet4) {
 
 ?>
 
-    <h4>Subnet ID <?= $subnet4['id'] ?></h4>
+    <h4>Subnet ID <?= hsc($subnet4['id']) ?></h4>
+    <form action="index.php?page=static_host4_edit" method="POST">
+        <?= csrf_hidden() ?>
+
+        <input type="hidden" name="dont-query" value="1" />
+        <input type="hidden" name="subnet-id" value="<?= hsc($subnet4['id']) ?>" />
+        <button type="submit">New</button>
+
+    </form>
+
     <table>
         <tr>
             <th>HW-Address</th>
@@ -28,15 +37,17 @@ foreach ($subnets4 as $subnet4) {
         ?>
 
             <tr>
-                <td><?= $host4['hw-address'] ?></td>
-                <td><?= $host4['ip-address'] ?></td>
-                <td><?= $host4['hostname'] ?></td>
-                <td><?= implode('<br>', array_column($host4['option-data'], '@TODO')) ?></td>
+                <td><?= hsc($host4['hw-address']) ?></td>
+                <td><?= hsc($host4['ip-address']) ?></td>
+                <td><?= hsc($host4['hostname']) ?></td>
+                <td><?= implode('<br>', array_map('hsc', array_column($host4['option-data'], '@TODO'))) ?></td>
                 <td>
                     <form action="index.php?page=static_host4_edit" method="POST">
-                        <input type="hidden" name="subnet-id" value="<?= $subnet4['id'] ?>" />
+                        <?= csrf_hidden() ?>
+
+                        <input type="hidden" name="subnet-id" value="<?= hsc($subnet4['id']) ?>" />
                         <input type="hidden" name="identifier-type" value="hw-address" />
-                        <input type="hidden" name="hw-address" value="<?= $host4['hw-address'] ?>" />
+                        <input type="hidden" name="hw-address" value="<?= hsc($host4['hw-address']) ?>" />
                         <button type="submit">Edit</button>
                     </form>
                 </td>

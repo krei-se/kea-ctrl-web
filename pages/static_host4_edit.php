@@ -1,18 +1,16 @@
 <?php
 
 if (
-    isset($_POST['subnet-id']) &&
-    isset($_POST['identifier-type']) &&
-    isset($_POST['hw-address'])
+    isset($_POST['subnet-id'])
 ) {
 
     // static edit
-    if (!isset($_POST['from-lease'])) {
+    if (!isset($_POST['dont-query'])) {
 
         $host4_res = send_kea_command("reservation-get", ["dhcp4"], [
-            "subnet-id" => (int)$_POST['subnet-id'],
-            "identifier-type" => $_POST['identifier-type'], // "hw-address"
-            "identifier" => $_POST['hw-address'],
+            "subnet-id" => (int)$_POST['subnet-id'] ?? 1,
+            "identifier-type" => $_POST['identifier-type'] ?? 'hw-address', // "hw-address"
+            "identifier" => $_POST['hw-address'] ?? '',
         ]);
 
         //    echo pre($host4_res);
@@ -24,13 +22,13 @@ if (
         }
     }
 
-    // from lease edit
+    // from lease edit or new button
     else {
 
-        $host4['subnet-id'] = $_POST['subnet-id'];
-        $host4['hw-address'] = $_POST['hw-address'];
-        $host4['ip-address'] = $_POST['ip-address'];
-        $host4['hostname'] = $_POST['hostname'];
+        $host4['subnet-id'] = $_POST['subnet-id'] ?? 1;
+        $host4['hw-address'] = $_POST['hw-address'] ?? '';
+        $host4['ip-address'] = $_POST['ip-address'] ?? '';
+        $host4['hostname'] = $_POST['hostname'] ?? '';
     }
 
     // echo pre($host4);
@@ -43,36 +41,37 @@ if (
         <h3>Edit Host v4</h3>
 
         <form action="index.php" method="POST">
+            <?= csrf_hidden() ?>
 
-            <input type="hidden" name="original-subnet-id" value="<?= $host4['subnet-id'] ?>" />
-            <input type="hidden" name="original-hw-address" value="<?= $host4['hw-address'] ?>" />
-            <input type="hidden" name="original-ip-address" value="<?= $host4['ip-address'] ?>" />
-            <input type="hidden" name="original-hostname" value="<?= $host4['hostname'] ?>" />
+            <input type="hidden" name="original-subnet-id" value="<?= hsc($host4['subnet-id']) ?>" />
+            <input type="hidden" name="original-hw-address" value="<?= hsc($host4['hw-address']) ?>" />
+            <input type="hidden" name="original-ip-address" value="<?= hsc($host4['ip-address']) ?>" />
+            <input type="hidden" name="original-hostname" value="<?= hsc($host4['hostname']) ?>" />
 
 
             <table>
 
                 <tr>
                     <th>subnet-id</th>
-                    <td><input type="text" name="subnet-id" value="<?= $host4['subnet-id'] ?>" /></td>
+                    <td><input type="text" name="subnet-id" value="<?= hsc($host4['subnet-id']) ?>" /></td>
                 </tr>
                 <tr>
                     <th>hw-address</th>
-                    <td><input type="text" name="hw-address" value="<?= $host4['hw-address'] ?>" /></td>
+                    <td><input type="text" name="hw-address" value="<?= hsc($host4['hw-address']) ?>" /></td>
                 </tr>
                 <tr>
                     <th>ip-address</th>
-                    <td><input type="text" name="ip-address" value="<?= $host4['ip-address'] ?>" /></td>
+                    <td><input type="text" name="ip-address" value="<?= hsc($host4['ip-address']) ?>" /></td>
                 </tr>
                 <tr>
                     <th>hostname</th>
-                    <td><input type="text" name="hostname" value="<?= $host4['hostname'] ?>" /></td>
+                    <td><input type="text" name="hostname" value="<?= hsc($host4['hostname']) ?>" /></td>
                 </tr>
 
 
             </table>
 
-            <?php if (!isset($_POST['from-lease'])) { ?>
+            <?php if (!isset($_POST['dont-query'])) { ?>
 
                 <button type="submit" name="action" value="host4_save">Save IP-Address</button>
                 <button type="submit" name="action" value="host4_add">Save Host as new</button>

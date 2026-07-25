@@ -2,6 +2,10 @@
 // index.php
 session_start();
 
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 // dont do that when talking with the API
 // $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
 // $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -99,8 +103,9 @@ if (!$is_logged_in) {
 
     <body style="font-family: monospace; margin: 20px;">
 
-        <h3>Logged in as <?= $_COOKIE['kea_user'] ?></h3>
+        <h3>Logged in as <?= hsc($_COOKIE['kea_user']) ?></h3>
         <form action="index.php" method="POST" style="display:inline;">
+            <?=  csrf_hidden() ?>
             <input type="hidden" name="action" value="logout">
             <button type="submit">Logout</button>
         </form>

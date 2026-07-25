@@ -25,6 +25,7 @@ function send_kea_command(string $command, array $services, array $arguments = [
     $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     // deprecated, not needed curl_close($ch);
 
+
     if ($http_code !== 200 || !$response) {
         return ['result' => 1, 'text' => "HTTP Error or Kea Unreachable ($http_code)"];
     }
