@@ -33,7 +33,7 @@ if (
 
     // echo pre($host4);
 
-    if ($host4) {
+    if (!empty($host4)) {
 
 
 ?>
@@ -79,7 +79,7 @@ if (
 
             <?php } else { ?>
 
-                <button type="submit" name="action" value="host4_add">Save Lease as Reservation</button>
+                <button type="submit" name="action" value="host4_add">Save New Reservation</button>
 
             <?php } ?>
 

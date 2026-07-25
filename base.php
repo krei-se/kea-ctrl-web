@@ -1,6 +1,6 @@
 <?php
 
-function hsc(string $string)
+function hsc(mixed $string)
 {
     return htmlspecialchars($string, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
